@@ -1,0 +1,91 @@
+body {
+    background-color: rgba(255,253,140,0.45);
+    width: 100%;
+    margin: 0;
+}
+
+/******************/
+/* HEADER SECTION */
+/******************/
+header {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em;
+}
+header a {
+	display: block;
+	margin: 0 auto;
+	font-size: 0.6em;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    padding: 0 10px;
+    display: inline;
+    font-size: 0.8em;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+/****************/
+/* MAIN SECTION */
+/****************/
+#crossroad-links {
+	margin-top: 80px;
+	padding: 20px 0;
+	width: 100%;
+}
+#crossroad-links a {
+    display: block;
+    font-size: 2em;
+    text-align: center;
+	-webkit-transition: font-size 1s ease-out;
+	-moz-transition: font-size 1s ease-out;
+	-o-transition: font-size 1s ease-out;
+	transition: font-size 1s ease-out;
+}
+#crossroad-links a:hover {
+	font-size: 4em;
+}
+/******************/
+/* FOOTER SECTION */
+/******************/
+footer {
+	display: block;
+	width: 100%;
+    font-size: 0.8em;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+/*****************************/
+/* RIDE COST CALCULATION CSS */
+/*****************************/
+#ride-cost-input-table {
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 150px;
+}
+#ride-cost-input-table td {
+	padding: 10px 0;
+	width: 300px;
+}
+#ride-cost-input-table tr:nth-child(1) {
+	font-size: 2em;
+	font-weight: bolder;
+}
+#ride-cost-input-table tr:nth-child(3) td {
+	padding-top: 150px;
+}
+#ride-cost-input-table tr:nth-child(3) input {
+	font-size: 2em;
+	font-weight: bolder;
+	
+}
+#ride-cost-input-table input {
+	text-align: center;
+}
