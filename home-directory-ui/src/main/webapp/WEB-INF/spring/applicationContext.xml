@@ -3,6 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="requestValidator" class="org.simsoft.validator.DefaultRequestValidator" />
+	<bean id="requestValidator" class="org.simsoft.security.request.RequestValidatorChain">
+		<constructor-arg>
+			<list>
+				<bean class="org.simsoft.security.request.DefaultRequestValidator" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="navigator" class="org.simsoft.security.file.DefaultNavigator" />
 
 </beans>

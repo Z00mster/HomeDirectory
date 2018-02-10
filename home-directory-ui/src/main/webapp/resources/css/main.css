@@ -1,0 +1,56 @@
+/******************/
+/* HEADER SECTION */
+/******************/
+header {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em;
+}
+header a {
+	display: block;
+	margin: 0 auto;
+	font-size: 0.6em;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+li {
+    padding: 0 10px;
+    display: inline;
+    font-size: 0.8em;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+/****************/
+/* MAIN SECTION */
+/****************/
+body {
+	margin: 0 40px;
+}
+main {
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+form#form{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+form#form input {
+	display: none;
+}
+/*******************/
+/* DIR-VIEW BLOCKS */
+/*******************/
+.content-block {
+	width: 300px;
+	height: 150px;
+	text-align: center;
+	padding: 5px;
+	display: inline-block;
+	margin: 0 auto;
+}

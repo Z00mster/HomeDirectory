@@ -10,7 +10,8 @@
 
         <main>
 			<form action="${pageContext.request.contextPath}/login" method="post">
-				<input type="submit" value="hello" />
+				<input type="password" name="password" />
+				<input type="submit" value="Log In" />
 			</form>
         </main>
 

@@ -23,7 +23,6 @@ package org.simsoft.controller;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.simsoft.model.LoginModel;
 import org.simsoft.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -65,7 +64,7 @@ public abstract class ControllerTestBase {
     
     protected ResultActions doPost(String url) {
         try {
-            return mockMvc.perform(post(url).flashAttr("loginModel", new LoginModel()));
+            return mockMvc.perform(post(url).flashAttr("loginModel", null));
         } catch (Exception ex) {
         	ex.printStackTrace();
             return null;

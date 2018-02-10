@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 	http://www.springframework.org/schema/security/spring-security.xsd
+        				http://www.springframework.org/schema/beans 	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+        				
+	<sec:http auto-config="true" use-expressions="true">
+		<sec:intercept-url pattern="/" access="permitAll" />
+		<sec:intercept-url pattern="/home" access="permitAll" />
+		<sec:intercept-url pattern="/login" access="permitAll" />
+		<sec:intercept-url pattern="/secure" access="isAuthenticated()" />
+
+		<sec:form-login login-page='/login' default-target-url="/"
+			authentication-failure-url="/login?error" />
+		<sec:logout logout-success-url="/" />
+	</sec:http>
+
+	<sec:authentication-manager>
+		<sec:ldap-authentication-provider
+			user-search-base="ou=people" user-search-filter="(uid={0})"
+			group-search-base="ou=groups" group-search-filter="(member={0})">
+		</sec:ldap-authentication-provider>
+	</sec:authentication-manager>
+
+	<sec:ldap-server root="dc=baeldung,dc=com" ldif="users.ldif" />
+
+</beans>

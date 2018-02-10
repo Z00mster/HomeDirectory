@@ -1,14 +1,14 @@
 package org.simsoft.controller;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.simsoft.security.Principal;
-import org.simsoft.validator.RequestValidator;
+import org.simsoft.Constants;
+import org.simsoft.security.exception.RequestException;
+import org.simsoft.security.file.Content;
+import org.simsoft.security.file.Folder;
+import org.simsoft.security.file.Navigator;
+import org.simsoft.security.request.RequestValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,55 +17,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class IndexController {
+public class IndexController extends AbstractController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
 	private RequestValidator requestValidator;
 	
+	@Autowired
+	private Navigator navigator;
+		
 	@RequestMapping(value = "/")
 	public String getIndex(HttpServletRequest request, Model model) {
-		Principal principal = requestValidator.validateAndReturn(request);
-		if (principal == null) {
-			LOG.info("Not logged in, redirecting...");
+		try {
+			requestValidator.validate(request);
+		} catch (RequestException ex) { 
+			LOG.info(ex.getMessage());
 			return "redirect:/login";
 		}
-		
-		File rootDirectory = new File("C:/Users/zoom/.m2");
-		List<File> content = Arrays.asList(rootDirectory.listFiles());
-		
-		List<FileView> fileViews = new ArrayList<>();
-		content.forEach(con -> {
-			if (con.isDirectory()) {
-				fileViews.add(new FileView(con.getName(), "folder.jpg"));
-			} else {
-				fileViews.add(new FileView(con.getName(), "file.png"));
-			}
-		});		
-		
-		model.addAttribute("files", fileViews);
-		return "dir-view";
-	}
 	
-	public static class FileView {
+		Folder folder = navigator.goTo((String) request.getSession().getAttribute(Constants.DIRECTORY_SESSION_ATTRIBUTE));
+		model.addAttribute("folder", folder);
 		
-		private final String name;
-		private final String imageSource;
-		
-		private FileView(String name, String imageSource) {
-			this.name = name;
-			this.imageSource = imageSource;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		
-		public String getImageSource() {
-			return imageSource;
-		}
-		
+		return "dir-view";
 	}
 	
 }
